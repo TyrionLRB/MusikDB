@@ -5,12 +5,14 @@ $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registrierung</title>
+
+<link rel="stylesheet" href="menue.css" />
+
 </head>
 <body>
 
 <?php
-$showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
+$showFormular = true; //Variable ob das Registrierungsformular angezeigt werden soll
 
 if(isset($_GET['register'])) {
  $error = false;
