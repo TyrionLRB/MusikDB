@@ -1,3 +1,8 @@
+html {
+  background: url(Bilder/sunset.jpg);
+  background-size: cover;
+}
+
 ul {
    list-style-type: none;
    margin: 0;
