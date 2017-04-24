@@ -1,28 +1,34 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
-if(isset($_GET['login'])) {
+
+if(isset($_GET['login'])) {           //Abfrage ob Login Fornular abgesendet
  $email = $_POST['Email'];
  $passwort = $_POST['Passwort'];
- $statement = $pdo->prepare("SELECT * FROM nutzer WHERE Email = :Email");
+
+ $statement = $pdo->prepare("SELECT * FROM nutzer WHERE Email = :Email");    //Datenbankabfrage ob E-Mail-Adresse Vorhanden
  $result = $statement->execute(array('Email' => $email));
  $user = $statement->fetch();
- //�berpr�fung des Passworts
- if ($user !== false && password_verify($passwort, $user['Passwort'])) {
+
+ //Überprüfung des Passworts
+ if ($user !== false && password_verify($passwort, $user['Passwort'])) {   //Passwortüberprüfung.
 // $_SESSION['Nutzer_ID'] = $user['id'];
-//die('Login erfolgreich. Weiter zu <a href="interpret.htm">internen Bereich</a>');
-header('Location: interpret.htm');
+ die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
  } else {
- $errorMessage = "E-Mail oder Passwort war ung�ltig<br>";
+ $errorMessage = "E-Mail oder Passwort war ungültig<br>";
  }
+
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="menue.css" />
   <title>Login</title>
 </head>
 <body>
+  <body style="background-image:url(sunset.jpg)"
+  >
 
 <?php
 if(isset($errorMessage)) {
@@ -41,13 +47,3 @@ Passwort:<br>
 </form>
 </body>
 </html>
-
-<?php
-session_start();
-if(!isset($_SESSION['Nutzer_ID'])) {
- die('Bitte zuerst <a href="Login.php">einloggen</a>');
-}
-//Abfrage der Nutzer ID vom Login
-$userid = $_SESSION['Nutzer_ID'];
-echo "Hallo User: ".$userid;
-?>
