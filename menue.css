@@ -1,5 +1,6 @@
-html {
-  background: url(Bilder/sunset.jpg);
+body {
+  background: url("sunset.jpg");
+  height: 100vh;
   background-size: cover;
 }
 
@@ -44,6 +45,18 @@ table#t01 {
 table#t01 th{
   background-color: black;
   color: white
+}
+form {
+  background-color: #d1dbff;
+  width: 370px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+input{
+  background-color: grey;
+  color: white;
+  border-radius: 20px;
 }
 
 footer{
