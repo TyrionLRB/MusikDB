@@ -5,23 +5,20 @@ $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
 <!DOCTYPE html>
 <html>
 <head>
-
-<link rel="stylesheet" href="menue.css" />
-
+  <link rel="stylesheet" href="menue.css" />
+  <title>Registrierung</title>
 </head>
 <body>
 
 <?php
 $showFormular = true; //Variable ob das Registrierungsformular angezeigt werden soll
-
 if(isset($_GET['register'])) {
  $error = false;
  $email = $_POST['Email'];
  $passwort = $_POST['Passwort'];
  $passwort2 = $_POST['Passwort2'];
-
  if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
- echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+ echo 'Bitte eine g�ltige E-Mail-Adresse eingeben<br>';
  $error = true;
  }
  if(strlen($passwort) == 0) {
@@ -29,29 +26,24 @@ if(isset($_GET['register'])) {
  $error = true;
  }
  if($passwort != $passwort2) {
- echo 'Die Passwörter müssen übereinstimmen<br>';
+ echo 'Die Passw�rter m�ssen �bereinstimmen<br>';
  $error = true;
  }
-
- //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+ //�berpr�fe, dass die E-Mail-Adresse noch nicht registriert wurde
  if(!$error) {
  $statement = $pdo->prepare("SELECT * FROM nutzer WHERE Email = :Email");
  $result = $statement->execute(array('Email' => $email));
  $user = $statement->fetch();
-
  if($user !== false) {
  echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
  $error = true;
  }
  }
-
- //Keine Fehler, wir können den Nutzer registrieren
+ //Keine Fehler, wir k�nnen den Nutzer registrieren
  if(!$error) {
  $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
-
  $statement = $pdo->prepare("INSERT INTO nutzer (Email, Passwort) VALUES (:Email, :Passwort)");
  $result = $statement->execute(array('Email' => $email, 'Passwort' => $passwort_hash));
-
  if($result) {
  echo 'Registrierung war erfolgreich. <a href="Login.php">Zum Login</a>';
  $showFormular = false;
@@ -60,7 +52,6 @@ if(isset($_GET['register'])) {
  }
  }
 }
-
 if($showFormular) {
 ?>
 
