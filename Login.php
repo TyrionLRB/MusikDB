@@ -13,7 +13,7 @@ if(isset($_GET['login'])) {           //Abfrage ob Login Fornular abgesendet
  //Überprüfung des Passworts
  if ($user !== false && password_verify($passwort, $user['Passwort'])) {   //Passwortüberprüfung.
 // $_SESSION['Nutzer_ID'] = $user['id'];
- die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
+ header('Location: interpret.htm');
  } else {
  $errorMessage = "E-Mail oder Passwort war ungültig<br>";
  }
