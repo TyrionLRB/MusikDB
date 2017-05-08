@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="menue.css" />
-  <title>Willkommen</title>
-</head>
+<?php
+include('header.php');
+?>
 <body>
-
   <h1>Willkommen bei der MusikDB von Marco Claussen und Robin Batta</h1><br>
   <p>Zur Nutzung unserer Datenbank muessen Sie sich registrieren. Falls Sie sich schon einen Account angelegt haben, bitten wir Sie, sich einzuloggen.<br> Viel Spass bei der Nutzung unserer MusikDB.</p>
 <div align="center">
@@ -16,6 +12,6 @@
     <button>Login</button>
   </a>
 </div>
-
-</body>
-</html>
+<?php
+include('footer.php');
+?>
