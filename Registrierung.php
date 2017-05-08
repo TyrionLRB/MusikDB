@@ -1,6 +1,6 @@
 <?php
-session_start(); //Start der Registrierung
-$pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', ''); //Verbindungsaufbau zur Datenbank
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,11 +65,9 @@ Passwort wiederholen:<br>
 <input type="Password" size="40" maxlength="250" name="Passwort2"><br><br>
 
 <input type="submit" value="Abschicken">
+<input type="button" onclick="location.href='Login.php'" value="Zum Login">
 </form>
-
 <?php
 }
+include('footer.php');
 ?>
-
-</body>
-</html>
