@@ -1,5 +1,11 @@
 <?php
 include('header.php');
+
+/*
+* Der Startbildschirm wird als erstes aufgerufen. Ein kurzer Begrüßungstext wird angezeigt
+* sowie zwei Buttons, welche zum Registrierungsformular bzw. zum Loginformular führen.
+*/
+
 ?>
 <body>
   <h1>Willkommen bei der MusikDB von Marco Claussen und Robin Batta</h1><br>
