@@ -9,8 +9,26 @@ $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
 <title>Registrierung</title>
 </head>
 <body>
-
 <?php
+
+/*
+* Im Folgenden wird zuerst eine Variable "$showFormular" definiert, welche das Registrierungsformular
+* anzeigt oder nicht. Danach wird in einer If-Abfrage überprüft, ob ein GET-Parameter "register"
+* übergeben wurde. Ist dies der Fall werden die Nutzerdaten abgefragt.
+*
+* Folgend werden IF-Abfragen genutzt, um sicherzustellen, dass eine gültige E-Mail-Adresse
+* eingegeben wurde, ein Passwort eingegeben wurde und das wiederholte Passwort
+* mit dem ersten eingegeben Passwort übereinstimmt. Des Weiteren wird überprüft, ob die
+* eingegebene E-Mail-Adresse schon registriert ist und dann eine Fehlermeldung ausgegeben,
+* falls dies der Fall ist.
+*
+* Wenn alle Bedingungen erfüllt sind, wird das Passwort in eine neue Variable "$passwort_hash"
+* geschrieben und in einen Hashwert umgewandelt. Dieser Hashwert wird dann zusammen mit
+* der E-Mail-Adresse in die Datenbank geschrieben.
+* Nach einer Erfolgsmeldung in Form der Weiterleitung zum Login,
+* wird "$showFormular" auf false gesetzt um das Registrierungsformular nicht nochmal anzuzeigen.
+*/
+
 $showFormular = true; //Variable ob das Registrierungsformular angezeigt werden soll
 if(isset($_GET['register'])) {   //Überprüfung ob GET-Parameter übergeben
  $error = false;
@@ -50,6 +68,14 @@ if(isset($_GET['register'])) {   //Überprüfung ob GET-Parameter übergeben
  echo 'Fehler beim Speichern.<br>';     //Wenn Fehler beim Eintragen in Tabelle.
  }
  }
+
+ /*
+ * Nun folgt der Code für die Eingabe der Nutzerdaten.
+ * Es wird eine Form erstellt, in welcher der User seine Daten eintragen kann.
+ * Die Gestaltung des Formulars wird von "menue.css" festgelegt.
+ *
+ */
+
 }
 if($showFormular) {       //Formular in welches man die Nutzerdaten eintragen kann.
 ?>
