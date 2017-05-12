@@ -1,8 +1,20 @@
+/*
+* Der Hintergrund der Seite wird hier eingefügt.
+* Es handelt sich hierbei um eine Bildmontage welche von den Autoren selbst
+* erstellt wurde.
+*/
+
 html {
   background: url(sunset.jpg);
   height: 100vh;
   background-size: cover;
 }
+
+/*
+* Hier wird der Menübalken der Seite gestaltet.
+* Der Balken wurde in einem Grauton gestaltet um es einfach zu halten. Dies hat den Grund,
+* den Blick des Betrachters nicht auf den Menübalken zu ziehen.
+*/
 
 ul {
    list-style-type: none;
@@ -13,6 +25,13 @@ ul {
    overflow: hidden;
    background-color: #333333;
 }
+
+/*
+* Die form stellt Eingabefelder dar. Beispielsweise für die Registrierung.
+* Farblich wurde hier ein heller, ausgebleichter Blauton gewählt um mit dem
+* Hintergrundbild in Einklang zu bleiben.
+*/
+
 form {
   background-color: #d1dbff;
   width: 370px;
@@ -20,14 +39,30 @@ form {
   padding: 20px;
   border-radius: 20px;
 }
+
+/*
+* Im input werden die Textfelder in der Form gestaltet.
+* Auch diese wurden relativ einfach mit dem PHP Standard Grauton gestaltet.
+*/
+
 input{
   background-color: grey;
   color: white;
   border-radius: 20px;
 }
+
+/*
+* li stellt eine Liste dar. Diese soll Links ausgerichtet sein.
+*/
+
 li {
    float: left;
 }
+
+/*
+* li a gestaltet alles in li. Der Text soll im Blockformat sein und weiß sein.
+* Des weiteren ist der Text in der Mitte und 16px groß.
+*/
 
 li a {
    display: block;
@@ -37,31 +72,66 @@ li a {
    text-decoration: none;
 }
 
+/*
+* Mit dem li a:hover wird festgelegt, werlche Farbe die Liste annimmt, wenn man mit der
+* Maus über sie geht. Diese Farbe ist in diesem Falle ein dunkler Grauton.
+*/
+
 li a:hover {
     background-color: #111;
 }
+
+/*
+* Die Tabellen werden mit 1px großen schwarzen Rand gestaltet. Die Zellen sind 50px hoch
+* und sie sind weiß.
+*/
+
 table, th, td{
   margin-top: 50px;
   border: 1px solid black;
   border-collapse: collapse;
   color: white;
 }
+
+/*
+* Hier wird der Text in den Tabellen gestaltet. Der Text ist Linksbündig und hat 5px
+* Abstand von der den Tabellenrändern.
+*/
+
 th, td{
   padding: 5px;
   text-align: left;
 }
+
+/*
+* Die Überschriften werden mit "h1" gestaltet. Diese haben eine Schriftgröße von 30px,
+* sind weiß und sind in der Schirftart Lucida sans-serif geschrieben. Außerdem werden
+* Überschriften zentriert.
+*/
+
 h1 {
   color: white;
   font-size: 30px;
   font-family: Lucida sans-serif;
   text-align: center;
 }
+
+/*
+* "p" gestaltet den Standard-Text auf der Website. Dieser wird weiß in der
+* Schriftart "Lucida sans-serif" dargestellt.
+*/
+
 p {
   color: white;
   font-size: 18px;
   font-family: Lucida sans-serif;
   text-align: center;
 }
+
+/*
+* Der Footer stellt den unteren Teil der Website dar. Dieser ist an den Menübalken angepasst.
+* Farblich ist der Text auch hier in weiß gehalten.
+*/
 
 footer{
   background-color: #333333;
@@ -71,3 +141,4 @@ footer{
   height: 2 em;
   width: 100%;
 }
+
