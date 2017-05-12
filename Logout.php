@@ -1,4 +1,11 @@
 <?php
+
+/*
+* Das Formular Logout.php stellt den Logoutvorgang dar. Wird dieses Formular ausgeführt,
+* wird die Session des Users abgeschlossen und er bekommt eine Meldung, dass er
+* erfolgreich ausgeloggt wurde.
+*/
+
 session_start();
 session_destroy();
 include('header.php');
