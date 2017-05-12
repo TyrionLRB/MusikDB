@@ -1,6 +1,13 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
+
+/*
+* Im Folgenden wird in einer If-Abfrage festgestellt, ob die vom User eingegebene
+* E-Mail-Adresse in der Datenbank vorhanden ist und das Passwort korrekt ist.
+* Wenn diese nicht vorhanden sind, folgt eine Fehlermeldung.
+*/
+
 $_SESSION['rechte'] = "";
 if(isset($_GET['login'])) {           //Abfrage ob Login Fornular abgesendet
  $email = $_POST['Email'];
@@ -23,6 +30,14 @@ include('header.php');
 if(isset($errorMessage)) {
  echo $errorMessage;
 }
+
+/*
+* Nun folgt der Code für die Eingabe der Nutzerdaten.
+* Es wird eine Form erstellt, in welcher der User seine Daten eintragen kann.
+* Die Gestaltung des Formulars wird von "menue.css" festgelegt.
+*
+*/
+
 ?>
 <form action="?login=1" method="post">
 E-Mail:<br>
@@ -37,3 +52,4 @@ Passwort:<br>
 <?php
 include('footer.php')
  ?>
+
