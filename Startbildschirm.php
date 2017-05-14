@@ -1,12 +1,11 @@
 <?php
 include('header.php');
+?>
 
 /*
 * Der Startbildschirm wird als erstes aufgerufen. Ein kurzer Begrüßungstext wird angezeigt
 * sowie zwei Buttons, welche zum Registrierungsformular bzw. zum Loginformular führen.
 */
-
-?>
 <body>
   <h1>Willkommen bei der MusikDB von Marco Claussen und Robin Batta</h1><br>
   <p>Zur Nutzung unserer Datenbank muessen Sie sich registrieren. Falls Sie sich schon einen Account angelegt haben, bitten wir Sie, sich einzuloggen.<br> Viel Spass bei der Nutzung unserer MusikDB.</p>
