@@ -1,13 +1,11 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
-
 /*
 * Im Folgenden wird in einer If-Abfrage festgestellt, ob die vom User eingegebene
 * E-Mail-Adresse in der Datenbank vorhanden ist und das Passwort korrekt ist.
 * Wenn diese nicht vorhanden sind, folgt eine Fehlermeldung.
 */
-
 $_SESSION['rechte'] = "";
 if(isset($_GET['login'])) {           //Abfrage ob Login Fornular abgesendet
  $email = $_POST['Email'];
@@ -24,9 +22,6 @@ if(isset($_GET['login'])) {           //Abfrage ob Login Fornular abgesendet
  }
 }
 include('header.php');
-?>
-<body>
-<?php
 if(isset($errorMessage)) {
  echo $errorMessage;
 }
