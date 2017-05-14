@@ -9,6 +9,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=MusikDB', 'root', '');
 <title>Registrierung</title>
 </head>
 <body>
+
 <?php
 
 /*
@@ -68,15 +69,14 @@ if(isset($_GET['register'])) {   //Überprüfung ob GET-Parameter übergeben
  echo 'Fehler beim Speichern.<br>';     //Wenn Fehler beim Eintragen in Tabelle.
  }
  }
-
- /*
- * Nun folgt der Code für die Eingabe der Nutzerdaten.
- * Es wird eine Form erstellt, in welcher der User seine Daten eintragen kann.
- * Die Gestaltung des Formulars wird von "menue.css" festgelegt.
- *
- */
-
 }
+
+/*
+* Nun folgt der Code für die Eingabe der Nutzerdaten.
+* Es wird eine Form erstellt, in welcher der User seine Daten eintragen kann.
+* Die Gestaltung des Formulars wird von "menue.css" festgelegt.
+*
+*/
 if($showFormular) {       //Formular in welches man die Nutzerdaten eintragen kann.
 ?>
 
