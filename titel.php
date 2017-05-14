@@ -16,8 +16,8 @@ include('menue.php');
     * der Datenbank "MusikDB" mithilfe des SELECT-Statements ausgewählt.
     * Danach werden die verschiedenen Spalten in einer Tabelle auf der Seite angezeigt.
     */
+    if(!isset($_GET['suchen'])){
     $sql = "SELECT Titel_Name, Laenge, Genre FROM titel";
-
     foreach ($pdo->query($sql) as $row) {
       echo "<tr>";
       echo "<td>", $row['Titel_Name'], "</td>";
@@ -26,7 +26,70 @@ include('menue.php');
       echo "</tr>";
       }
       echo "</table>";
-
+    }
+    if(isset($_GET['suchen'])){
+      $titel = $_POST['Titel'];
+      $laenge = $_POST['Laenge'];
+      $genre = $_POST['Genre'];
+      $error = false;
+      $errortext;
+      $result;
+      if(strlen($titel) == 0 && strlen($laenge) == 0 && strlen($genre) == 0){
+        $errortext = "Bitte füllen Sie genau ein Feld.";
+        $error = true;
+      }
+      switch(true){
+      case strlen($titel) != 0 :
+        $statement = $pdo->prepare("SELECT Titel_Name, Laenge, Genre FROM titel WHERE Titel_Name = :Titel_Name");
+        $statement->execute(array(':Titel_Name' => $titel));
+        break;
+      case strlen($laenge) != 0 :
+        $statement = $pdo->prepare("SELECT Titel_Name, Laenge, Genre FROM titel WHERE Laenge = :Laenge");
+        $statement->execute(array(':Laenge' => $laenge));
+        break;
+      case strlen($genre) != 0 :true;
+        $statement = $pdo->prepare("SELECT Titel_Name, Laenge, Genre FROM titel WHERE Genre = :Genre");
+        $statement->execute(array(':Genre' => $genre));
+      break;
+      }
+      if($error){
+        echo "<tr>";
+        echo "<td>", $errortext,"</td>";
+        echo "<td> </td>";
+        echo "<td> </td>";
+        echo "</tr>";
+        echo "</table>";
+      }
+   if(!$error){
+     $result =  $statement->fetchAll();
+     if(count($result) != 0){
+        foreach( $result as $row) {
+          echo "<tr>";
+          echo "<td>", $row['Titel_Name'], "</td>";
+          echo "<td>", $row['Laenge'], "</td>";
+          echo "<td>", $row['Genre'], "</td>";
+          echo "</tr>";
+          }
+      }
+      else {
+        echo "<tr>";
+        echo "<td>","Kein Eintrag gefunden";"</td>";
+        echo "</tr>";
+      }
+      echo "</table>";
+    }
+    }
+    ?>
+    <form action="?suchen=1" method="post">
+    Titel:<br>
+    <input type="Titel" size="40" maxlength="250" name="Titel"><br><br>
+    Laenge:<br>
+    <input type="Laenge" size="40" maxlength="250" name="Laenge"><br><br>
+    Genre:<br>
+    <input type="Genre" size="40" maxlength="250" name="Genre"><br><br>
+    <input type="submit" value="Suchen">
+    </form>
+    <?php
       /*
       * Nun folgt das Rechtemanagement. In der IF-Abfrage wird abgefragt, ob der
       * angemeldete User schriebende oder lesende Rechte hat. Dazu wurde
@@ -46,36 +109,36 @@ include('menue.php');
       if($rechte == "1"){
         ?>
         <form action="?einfügen=1" method="post">
-        Album:<br>
-        <input type="Name" size="40" maxlength="250" name="Name"><br><br>
-        Genre:<br>
+        Titel:<br>
+        <input type="Titel" size="40" maxlength="250" name="Titel"><br><br>
+        Laenge:<br>
         <input type="Laenge" size="40" maxlength="250" name="Laenge"><br><br>
-        Erscheinungsdatum:<br>
+        Genre:<br>
         <input type="Genre" size="40" maxlength="250" name="Genre"><br><br>
         <input type="submit" value="Abschicken">
         </form>
         <?php
         if(isset($_GET['einfügen'])) {
-         $name = $_POST['Name'];
+         $titel = $_POST['Titel'];
          $laenge = $_POST['Laenge'];
          $genre = $_POST['Genre'];
          $error = false;
-         if(strlen($name) == 0 || strlen($laenge) == 0 || strlen($genre) == 0){
+         if(strlen($titel) == 0 || strlen($laenge) == 0 || strlen($genre) == 0){
            echo "Alle Felder müssen ausgefüllt werden.";
            $error = true;
          }
          $regausdruck = "/[0-9]{2}[:]{1}[0-9]{2}/";
          if(!preg_match($regausdruck, $laenge)){
-           echo "Bitte die Laenge des Titels im Format 00:00 eingeben!";
+           echo "Bitte die Laenge des Titels im Format hh:ss eingeben!";
            $error = true;
          }
          if(!$error){
-           $statement = $pdo->prepare("INSERT INTO titel (Name, Laenge, Genre) VALUES (:Name, :Laenge, :Genre)");
-           $result = $statement->execute(array('Name' => $name, 'Laenge' => $laenge, 'Genre' => $genre));
+           $statement = $pdo->prepare("INSERT INTO titel (Titel_Name, Laenge, Genre) VALUES (:Titel_Name, :Laenge, :Genre)");
+           $result = $statement->execute(array('Titel_Name' => $titel, 'Laenge' => $laenge, 'Genre' => $genre));
            $user = $statement->fetch();
          }
        }
      }
-    include('footer.php');
   ?>
-
+</body>
+</html>
